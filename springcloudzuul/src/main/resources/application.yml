@@ -14,7 +14,7 @@ zuul:
    routes:
     multimime: 
       path: /multimime/**
-      serviceId: custaddress-service
+      serviceId: service1
 
 
       
@@ -28,7 +28,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-    registerWithEureka: false
+    registerWithEureka: true
     
      
 server:

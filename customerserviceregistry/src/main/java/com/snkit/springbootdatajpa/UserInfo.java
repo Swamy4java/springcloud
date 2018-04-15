@@ -1,18 +1,18 @@
 package com.snkit.springbootdatajpa;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements Serializable{
+public class UserInfo {
+	
+	
+
 
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4559235601858974096L;
-	
-	
 
 	private String name;
 	
@@ -20,16 +20,16 @@ public class User implements Serializable{
 	
 	private String compName;
 	
+	private String shareValue;
+	
 	private List<Address>  addList = new ArrayList<Address>(); 
 	
-	private Integer id;
 	
-	
-	public User() {
+	public UserInfo() {
 		
 	}
 
-	public User(String name, String desg) {
+	public UserInfo(String name, String desg) {
 		super();
 		this.name = name;
 		this.desg = desg;
@@ -67,15 +67,17 @@ public class User implements Serializable{
 		this.addList = addList;
 	}
 
-	public Integer getId() {
-		return id;
+	public String getShareValue() {
+		return shareValue;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setShareValue(String shareValue) {
+		this.shareValue = shareValue;
 	}
 
 	
 	
 	
+
+
 }

@@ -18,6 +18,8 @@ public class User implements Serializable{
 	
 	private String compName;
 	
+	private Integer id;
+	
 	private List<Address>  addList = new ArrayList<Address>(); 
 	
 	
@@ -61,6 +63,14 @@ public class User implements Serializable{
 
 	public void setAddList(List<Address> addList) {
 		this.addList = addList;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	

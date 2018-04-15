@@ -3,15 +3,28 @@ package com.snkit.springbootdatajpa;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.PageRequest;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service(value = "userService")
 public class UserService {
+	
 
-	@Autowired
+
+	
+	public UserService(UserRepository userRepository,ObjectMapper objectMapper) {
+		this.userRepository = userRepository;		
+		this.objectMapper = objectMapper;
+	}
+	
+	private Integer  userId = new Integer(0);
+	
 	private UserRepository userRepository;
+	
+	private ObjectMapper objectMapper;
+	
+	
 
 	public void addUser(User user) {
 
@@ -44,6 +57,8 @@ public class UserService {
 			User u = new User(user.getName(), user.getDesg());
 			u.setCompName(user.getCompName());
 			
+			u.setId(userId++);
+			
 			user.getAddressEntity().forEach(add -> {
 				Address addVo = new Address();
 				
@@ -71,12 +86,34 @@ public class UserService {
 		return u;
 	}
 	
-	public User findUserAddByName(User user1) {
+	public UserInfo findUserAddByName(User user1) {
 
 		UserEntity user = userRepository.getUserEntity(user1.getName());
 		
 		
-		User u = new User(user.getName(), user.getDesg());
+		UserInfo u = new UserInfo(user.getName(), user.getDesg());
+		u.setShareValue("Test");
+		u.setCompName(user.getCompName());
+		
+		user.getAddressEntity().forEach(add -> {
+			Address addVo = new Address();
+			
+			addVo.setCity(add.getCity());
+			addVo.setState(add.getState());
+			u.getAddList().add(addVo);
+			
+		});
+
+		return u;
+	}
+	
+	public UserInfo findUserAddByName1(User user1) {
+
+		UserEntity user = userRepository.getUserEntity(user1.getName());
+		
+		
+		UserInfo u = new UserInfo(user.getName(), user.getDesg());
+		u.setShareValue("Test");
 		u.setCompName(user.getCompName());
 		
 		user.getAddressEntity().forEach(add -> {

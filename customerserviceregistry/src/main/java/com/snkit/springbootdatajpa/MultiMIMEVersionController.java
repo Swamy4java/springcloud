@@ -42,9 +42,19 @@ public class MultiMIMEVersionController {
 			consumes= {"application/vnd.snkit-v1+json","application/vnd.snkit-v1+xml"} ,
 			produces = { "application/vnd.snkit-v1+json","application/vnd.snkit-v1+xml" }
 			)
-	public User findUserAddByName(@RequestBody User user) {
+	public UserInfo findUserAddByName(@RequestBody User user) {
 		return userService.findUserAddByName(user);
 	}
+	
+	
+	@RequestMapping( value= "/findUserByName",	method=RequestMethod.POST,
+			consumes= {"application/vnd.snkit-v2+json","application/vnd.snkit-v2+xml"} ,
+			produces = { "application/vnd.snkit-v2+json","application/vnd.snkit-v2+xml" }
+			)
+	public UserInfo findUserAddByName1(@RequestBody User user) {
+		return userService.findUserAddByName1(user);
+	}
+	
 	
 	@RequestMapping( value= "/findByUserCity",	method=RequestMethod.POST,
 			consumes= {"application/json","application/xml"},
